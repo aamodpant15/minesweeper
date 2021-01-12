@@ -1,5 +1,5 @@
 from game import Game
-
+from os import system
 class Minesweeper:
     def __init__(self):
         diff, first_pos = self.initialize_game()
@@ -30,6 +30,7 @@ class Minesweeper:
         while True:
             print("Enter difficulty (easy, moderate, hard): e,m,h")
             diff = input()
+            system('clear')
             if diff == 'e':
                 self.display_fake_board(9,9)
                 break
@@ -39,20 +40,20 @@ class Minesweeper:
             elif diff == 'h':
                 self.display_fake_board(16,30)
                 break
-
         while True:
-            loc = input()
+            loc = input('Enter the cell to reveal:')
             inputs = loc.split(' ')
             if len(inputs) == 2:
                 starting_pos = (int(inputs[0]), int(inputs[1]))
+                system('clear')
                 break
+
         return (diff, starting_pos)
 
     def play(self):
         while True:
-            loc = input()
+            loc = input('Enter the cell to reveal/flag:')
             inputs = loc.split(' ')
-            print(inputs)
             if len(inputs) == 2:
                 r,c = (int(inputs[0]), int(inputs[1]))
                 result = self.ms.uncover(r,c)
@@ -69,6 +70,7 @@ class Minesweeper:
                 if result == 2:
                     print('YOU WIN')
                     break
+            system('clear')
             print(self.ms)
 
 def main():

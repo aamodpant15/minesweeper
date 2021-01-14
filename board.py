@@ -17,7 +17,7 @@ class Board:
         return output
 
     def add_mines(self,i,j):
-        print(i,j)
+        # print(i,j)
         for some_num in range(self.num_mines):
             while True:
                 a = int(random() * self.size[0])

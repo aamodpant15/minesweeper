@@ -71,13 +71,13 @@ class Game:
         to_uncover = set() # game notation
         blank_cells = self.game.blanks # board notation
 
-        # while len(q) != 0:
-        #     i,j = q.pop()
-        #     to_uncover.add((i+1, j+1))
-        #     for blank in blank_cells:
-        #         if abs(blank[0]-i) <= 1 and abs(blank[1]-j) <= 1:
-        #             q.add((blank[0], blank[1]))
-        #             blank_cells.remove(blank)
+        while len(q) != 0:
+            i,j = q.pop()
+            to_uncover.add((i+1, j+1))
+            for blank in blank_cells:
+                if abs(blank[0]-i) <= 1 and abs(blank[1]-j) <= 1:
+                    q.add((blank[0], blank[1]))
+                    blank_cells.remove(blank)
 
 
         #####
@@ -108,39 +108,39 @@ class Game:
         #####
 
 
-        # for cell in to_uncover:
-        #     self.display[cell[0]][cell[1]] = ' '
-        #
-        # for cell in to_uncover:
-        #     i,j = cell
-        #     u_row = i-1 if i-1 >=1 else None
-        #     l_col = j-1 if j-1 >=1 else None
-        #     d_row = i+1 if i+1 < self.size[0] else None
-        #     r_col = j+1 if j+1 < self.size[1] else None
-        #
-        #     if u_row is not None and l_col is not None and self.display[u_row][l_col] == '_':
-        #         self.display[u_row][l_col] = self.game.board[u_row-1][l_col-1]
-        #
-        #     if u_row is not None and j is not None and self.display[u_row][j] == '_':
-        #         self.display[u_row][j] = self.game.board[u_row-1][j-1]
-        #
-        #     if u_row is not None and r_col is not None and self.display[u_row][r_col] == '_':
-        #         self.display[u_row][r_col] = self.game.board[u_row-1][r_col-1]
-        #
-        #     if i is not None and l_col is not None and self.display[i][l_col] == '_':
-        #         self.display[i][l_col] = self.game.board[i-1][l_col-1]
-        #
-        #     if i is not None and r_col is not None and self.display[i][r_col] == '_':
-        #         self.display[i][r_col] = self.game.board[i-1][r_col-1]
-        #
-        #     if d_row is not None and l_col is not None and self.display[d_row][l_col] == '_':
-        #         self.display[d_row][l_col] = self.game.board[d_row-1][l_col-1]
-        #
-        #     if d_row is not None and j is not None and self.display[d_row][j] == '_':
-        #         self.display[d_row][j] = self.game.board[d_row-1][j-1]
-        #
-        #     if d_row is not None and r_col is not None and self.display[d_row][r_col] == '_':
-        #         self.display[d_row][r_col] = self.game.board[d_row-1][r_col-1]
+        for cell in to_uncover:
+            self.display[cell[0]][cell[1]] = ' '
+        
+        for cell in to_uncover:
+            i,j = cell
+            u_row = i-1 if i-1 >=1 else None
+            l_col = j-1 if j-1 >=1 else None
+            d_row = i+1 if i+1 < self.size[0] else None
+            r_col = j+1 if j+1 < self.size[1] else None
+        
+            if u_row is not None and l_col is not None and self.display[u_row][l_col] == '_':
+                self.display[u_row][l_col] = self.game.board[u_row-1][l_col-1]
+        
+            if u_row is not None and j is not None and self.display[u_row][j] == '_':
+                self.display[u_row][j] = self.game.board[u_row-1][j-1]
+        
+            if u_row is not None and r_col is not None and self.display[u_row][r_col] == '_':
+                self.display[u_row][r_col] = self.game.board[u_row-1][r_col-1]
+        
+            if i is not None and l_col is not None and self.display[i][l_col] == '_':
+                self.display[i][l_col] = self.game.board[i-1][l_col-1]
+        
+            if i is not None and r_col is not None and self.display[i][r_col] == '_':
+                self.display[i][r_col] = self.game.board[i-1][r_col-1]
+        
+            if d_row is not None and l_col is not None and self.display[d_row][l_col] == '_':
+                self.display[d_row][l_col] = self.game.board[d_row-1][l_col-1]
+        
+            if d_row is not None and j is not None and self.display[d_row][j] == '_':
+                self.display[d_row][j] = self.game.board[d_row-1][j-1]
+        
+            if d_row is not None and r_col is not None and self.display[d_row][r_col] == '_':
+                self.display[d_row][r_col] = self.game.board[d_row-1][r_col-1]
 
     def game_won(self):
         return len(self.flags_to_go) == 0
